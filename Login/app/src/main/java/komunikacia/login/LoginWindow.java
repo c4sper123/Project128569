@@ -54,7 +54,7 @@ public class LoginWindow extends Activity {
                     passwordTxt.requestFocus();
                     passwordTxt.setError("FIELD CANNOT BE EMPTY");
                 }
-
+                //login
                 else {
                     Backendless.UserService.login(userName, password, new AsyncCallback<BackendlessUser>() {
                         @Override
