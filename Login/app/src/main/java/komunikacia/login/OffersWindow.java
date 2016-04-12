@@ -82,15 +82,6 @@ public class OffersWindow extends Activity{
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(OffersWindow.this,OfferDetailsWindow.class);
-//                    intent.putExtra("name",currentOffer.getName());
-//                    intent.putExtra("locality",currentOffer.getLocality());
-//                    intent.putExtra("detail",currentOffer.getDetails());
-//                    intent.putExtra("startDate",currentOffer.getStartDate().getTime());
-//                    intent.putExtra("endDate",currentOffer.getEndDate().getTime());
-//                    intent.putExtra("maxPeople",Integer.toString(currentOffer.getMaxPeople()));
-//                    intent.putExtra("type",Integer.toString(currentOffer.getType()));
-//                    intent.putExtra("imageUrl",currentOffer.getImageUrl());
-//                    intent.putExtra("price",Integer.toString(currentOffer.getPrice()));
                     intent.putExtra("objectId",currentOffer.getObjectId());
                     startActivity(intent);
                 }
