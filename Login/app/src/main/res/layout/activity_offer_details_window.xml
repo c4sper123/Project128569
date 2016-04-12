@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    tools:context="komunikacia.login.OfferDetailsWindow">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="983dp">
+        <AbsoluteLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ImageView
+                android:layout_width="591dp"
+                android:layout_height="591dp"
+                android:id="@+id/imageView4"
+                android:layout_x="-112dp"
+                android:layout_y="-23dp"
+                android:background="#ffffff"
+                android:adjustViewBounds="false"
+                android:focusable="false"
+                android:elevation="5dp" />
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:id="@+id/imageView"
+                android:layout_y="0dp"
+                android:layout_x="65dp"
+                android:src="#f80d0d" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/offerNameTxt"
+                android:layout_x="0dp"
+                android:layout_y="251dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:background="#e5d6d6" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="52dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="30.3. - 4.4."
+                android:id="@+id/offerDateTxt"
+                android:layout_x="0dp"
+                android:layout_y="345dp"
+                android:textSize="30sp"
+                android:autoText="true"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:background="#4d4444" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="TERMÍN:"
+                android:id="@+id/textView4"
+                android:layout_x="0dp"
+                android:textSize="25sp"
+                android:layout_y="310dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray"
+                android:background="#4d4444" />
+
+            <Button
+                android:layout_width="314dp"
+                android:layout_height="wrap_content"
+                android:text="KÚPIŤ ZA "
+                android:id="@+id/buyBtn"
+                android:background="@android:color/holo_orange_dark"
+                android:layout_x="35dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_y="417dp" />
+
+            <ImageView
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView3"
+                android:layout_x="25dp"
+                android:layout_y="478dp"
+                android:src="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="DETAIL:"
+                android:textStyle="bold"
+                android:id="@+id/offerDetail"
+                android:layout_x="155dp"
+                android:layout_y="490dp" />
+
+            <TextView
+                android:layout_width="345dp"
+                android:layout_height="800dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textView3"
+                android:layout_x="20dp"
+                android:layout_y="520dp" />
+
+
+        </AbsoluteLayout>
+    </ScrollView>
+
+</AbsoluteLayout>
