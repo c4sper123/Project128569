@@ -71,9 +71,8 @@ public class OfferDetailsWindow extends Activity {
                     Button btn = (Button) findViewById(R.id.buyBtn);
                     btn.setText("KÚPIŤ ZA " + response.getString("price") + "€");
 
-                    Log.d(TAG, "IDE!!!!!!!!!");
-                   // JSONObject categories = (JSONObject) response.getJSONArray("categories").get(1);
-                    Log.d(TAG, "IDE!!!!!!!!!");
+                    JSONArray category =  response.getJSONArray("categories");
+                    JSONObject categories = category.getJSONObject(0);
 
                     String type = null;
                     switch(response.getInt("type")){
@@ -87,9 +86,9 @@ public class OfferDetailsWindow extends Activity {
                     textView.setText(response.getString("details") +
                                     "\n\nLokalita: " + response.getString("locality")+
                                     "\n\nTyp: " + type +
-                                    "\n\nMaximálny počet ľudí: " + response.getString("maxPeople")
-                                    //"\n\nKategória: " + categories.getString("mainCategory")+
-                                    //"\n\nPodkategória: " + categories.getString("category")
+                                    "\n\nMaximálny počet ľudí: " + response.getString("maxPeople")+
+                                    "\n\nKategória: " + categories.getString("mainCategory")+
+                                    "\n\nPodkategória: " + categories.getString("category")
                     );
 
                     ImageView imageView = (ImageView) findViewById(R.id.imageView);
@@ -111,7 +110,6 @@ public class OfferDetailsWindow extends Activity {
                     String endDate = formatEnd.format(end);
 
                     textView.setText(staDate + " - " + endDate); //vyzera to takto: dd.MM. - dd.MM.yyyy  (napr. 3.4. - 20.4.2016)
-                    Log.d(TAG, "IDE!!!!!!!!!");
                     imageView1.setVisibility(View.INVISIBLE);
                     hidepDialog();
 
