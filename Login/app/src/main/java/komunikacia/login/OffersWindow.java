@@ -10,10 +10,18 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.PopupMenu;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,19 +35,20 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import java.util.ArrayList;
 
-public class OffersWindow extends Activity{
+public class OffersWindow extends ActionBarActivity {
 
     private ArrayList<Offer> offersData = new ArrayList<>();
     private static String TAG = OffersWindow.class.getSimpleName();
     private ProgressDialog pDialog;
     private String userId;
     private AlertDialog.Builder myAlert;
+    private ImageButton refreshBtn;
+    private ImageButton optionsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers_window);
-        getActionBar().setDisplayShowHomeEnabled(false);
         myAlert = new AlertDialog.Builder(this);
 
         userId = getIntent().getStringExtra("userId");
@@ -47,6 +56,34 @@ public class OffersWindow extends Activity{
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Prosím čakajte...");
         pDialog.setCancelable(false);
+
+        refreshBtn = (ImageButton) findViewById(R.id.refreshBtn);
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadOffers(BackendlessSettings.urlJsonObj);
+            }
+        });
+
+        optionsBtn = (ImageButton) findViewById(R.id.optionsBtn);
+        optionsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                //Creating the instance of PopupMenu
+//                PopupMenu popup = new PopupMenu(getApplicationContext(), v);
+//                //Inflating the Popup using xml file
+//                popup.getMenuInflater().inflate(R.menu.menu, popup.getMenu());
+//
+//                //registering popup with OnMenuItemClickListener
+//                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//                    public boolean onMenuItemClick(MenuItem item) {
+//                        Toast.makeText(OffersWindow.this, "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+//                        return true;
+//                    }
+//                });
+//                popup.show();//showing popup menu
+            }
+        });
 
         loadOffers(BackendlessSettings.urlJsonObj);
 
@@ -123,7 +160,6 @@ public class OffersWindow extends Activity{
 
                 }
 
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(),
@@ -141,7 +177,7 @@ public class OffersWindow extends Activity{
 
                 myAlert.setMessage("Nepodarilo sa nadviazať spojenie so serverom!").create();
                 myAlert.setTitle("Error");
-                myAlert.setIcon(android.R.drawable.ic_dialog_alert);
+                myAlert.setIcon(R.drawable.error_icon);
                 myAlert.setNegativeButton("Skúsiť znova", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -169,3 +205,4 @@ public class OffersWindow extends Activity{
             pDialog.dismiss();
     }
 }
+

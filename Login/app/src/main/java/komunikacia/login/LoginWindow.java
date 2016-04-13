@@ -4,6 +4,8 @@ package komunikacia.login;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,13 +25,11 @@ public class LoginWindow extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getActionBar().setDisplayShowHomeEnabled(false);
+       // getActionBar().setDisplayShowHomeEnabled(false);
 
 
         Backendless.initApp(this, BackendlessSettings.AP_ID, BackendlessSettings.SECRET_KEY, BackendlessSettings.appVersion);
         Button logButton = (Button) findViewById(R.id.loginBtn);
-
-
 
         final EditText userNameTxt = (EditText) findViewById(R.id.userNameTxt);
         final EditText passwordTxt = (EditText) findViewById(R.id.passwordTxt);

@@ -4,12 +4,15 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Handler;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,12 +36,13 @@ public class OfferDetailsWindow extends Activity {
     private ProgressDialog pDialog;
     private ImageView imageView1;
     private AlertDialog.Builder myAlert;
+    private ImageButton refreshBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer_details_window);
-        getActionBar().setDisplayShowHomeEnabled(false);
+       // getActionBar().setDisplayShowHomeEnabled(false);
         myAlert = new AlertDialog.Builder(this);
 
         pDialog = new ProgressDialog(this);
@@ -50,7 +54,16 @@ public class OfferDetailsWindow extends Activity {
         objectId = intent.getStringExtra("objectId");
 
         imageView1 = (ImageView) findViewById(R.id.imageView4);
+        imageView1.setElevation(5);
         imageView1.setVisibility(View.VISIBLE);
+
+        refreshBtn = (ImageButton) findViewById(R.id.refreshBtn);
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadOffer(BackendlessSettings.urlJsonObjId, objectId);
+            }
+        });
 
         loadOffer(BackendlessSettings.urlJsonObjId, objectId);
 
@@ -70,8 +83,32 @@ public class OfferDetailsWindow extends Activity {
                     TextView textView = (TextView) findViewById(R.id.offerNameTxt);
                     textView.setText(response.getString("name"));
 
+
                     Button btn = (Button) findViewById(R.id.buyBtn);
                     btn.setText("KÚPIŤ ZA " + response.getString("price") + "€");
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            myAlert.setMessage("Naozaj chcete zakúpiť túto ponuku?").create();
+                            myAlert.setTitle("Potvrdenie");
+                            myAlert.setIcon(R.drawable.checkout);
+                            myAlert.setNegativeButton("Kúpiť", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            myAlert.setPositiveButton("Zrušiť", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+
+                            myAlert.show();
+                        }
+                    });
 
                     JSONArray category =  response.getJSONArray("categories");
                     JSONObject categories = category.getJSONObject(0);
@@ -85,6 +122,7 @@ public class OfferDetailsWindow extends Activity {
                         default: break;
                     };
                     textView = (TextView) findViewById(R.id.textView3);
+                    textView.setMovementMethod(new ScrollingMovementMethod());
                     textView.setText(response.getString("details") +
                                     "\n\nLokalita: " + response.getString("locality")+
                                     "\n\nTyp: " + type +
@@ -131,7 +169,7 @@ public class OfferDetailsWindow extends Activity {
 
                 myAlert.setMessage("Nepodarilo sa nadviazať spojenie so serverom!").create();
                 myAlert.setTitle("Error");
-                myAlert.setIcon(android.R.drawable.ic_dialog_alert);
+                myAlert.setIcon(R.drawable.error_icon);
                 myAlert.setNegativeButton("Zrušiť", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -157,6 +195,4 @@ public class OfferDetailsWindow extends Activity {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
-
-
 }

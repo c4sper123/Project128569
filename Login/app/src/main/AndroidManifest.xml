@@ -9,7 +9,7 @@
         android:name=".AppController"
         android:allowBackup="true"
         android:label="Zľavový portáľ"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".LoginWindow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

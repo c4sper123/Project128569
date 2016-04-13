@@ -2,29 +2,98 @@
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+
 
 
     tools:context="komunikacia.login.OfferDetailsWindow">
 
 
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+
+        android:elevation="4dp">
+
+        <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="${relativePackage}.${activityClass}" >
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/imageButton"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_x="15dp"
+                android:layout_y="9dp"
+                android:background="@color/colorPrimary"
+                android:src="@mipmap/ic_menu" />
+
+            <TextView
+                android:layout_width="194dp"
+                android:layout_height="36dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="DETAIL PONUKY"
+                android:id="@+id/textView5"
+                android:layout_x="69dp"
+                android:layout_y="10dp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"/>
+
+            <ImageButton
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                android:id="@+id/settingsBtn"
+                android:layout_x="340dp"
+                android:layout_y="9dp"
+                android:src="@mipmap/ic_settings"
+                android:background="@color/colorPrimary"
+
+
+                />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/refreshBtn"
+                android:layout_x="295dp"
+                android:layout_y="0dp"
+                android:src="@mipmap/ic_refresh"
+                android:background="@color/colorPrimary" />
+
+        </AbsoluteLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
     <ScrollView
+
         android:layout_width="fill_parent"
-        android:layout_height="983dp">
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:fillViewport="true"
+        android:layout_x="0dp"
+        android:layout_y="50dp">
         <AbsoluteLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+
+            >
 
             <ImageView
                 android:layout_width="591dp"
                 android:layout_height="591dp"
                 android:id="@+id/imageView4"
                 android:layout_x="-112dp"
-                android:layout_y="-23dp"
+                android:layout_y="-50dp"
                 android:background="#ffffff"
                 android:adjustViewBounds="false"
                 android:focusable="false"
-                android:elevation="5dp" />
+                android:elevation="3dp" />
             <ImageView
                 android:layout_width="250dp"
                 android:layout_height="250dp"
@@ -104,15 +173,17 @@
                 android:layout_y="490dp" />
 
             <TextView
-                android:layout_width="345dp"
-                android:layout_height="800dp"
+                android:layout_width="fill_parent"
+                android:layout_height="400dp"
+                android:scrollbars="vertical"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/textView3"
-                android:layout_x="20dp"
+                android:layout_x="0dp"
                 android:layout_y="520dp" />
 
 
         </AbsoluteLayout>
     </ScrollView>
+
 
 </AbsoluteLayout>
