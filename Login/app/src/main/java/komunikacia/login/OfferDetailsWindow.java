@@ -32,12 +32,14 @@ public class OfferDetailsWindow extends Activity {
     private static String TAG = OffersWindow.class.getSimpleName();
     private ProgressDialog pDialog;
     private ImageView imageView1;
+    private AlertDialog.Builder myAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer_details_window);
         getActionBar().setDisplayShowHomeEnabled(false);
+        myAlert = new AlertDialog.Builder(this);
 
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Prosím čakajte...");
@@ -58,7 +60,7 @@ public class OfferDetailsWindow extends Activity {
 
         showpDialog();
         URL += objectId;
-        Log.d("Request URL", URL); //len na vypisanie do logu, ako vyzera moja request URL - pomocny vypis
+        Log.d("Request URL", URL); //len na vypisanie do logu, ako vyzera moja request URL
 
         final JsonObjectIdRequest jsonObjReq = new JsonObjectIdRequest(Request.Method.GET,URL,null ,new Response.Listener<JSONObject>() {
             @Override
@@ -122,24 +124,22 @@ public class OfferDetailsWindow extends Activity {
 
             }
         }, new Response.ErrorListener() {
-
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                Toast.makeText(getApplicationContext(),
-//                        error.getMessage(), Toast.LENGTH_SHORT).show();
                 hidepDialog();
-                AlertDialog alertDialog = new AlertDialog.Builder(OfferDetailsWindow.this).create();
 
-                alertDialog.setTitle("Error");
-                alertDialog.setMessage("Nepodarilo sa nadviazať spojenie so serverom!");
-                alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
-                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                myAlert.setMessage("Nepodarilo sa nadviazať spojenie so serverom!").create();
+                myAlert.setTitle("Error");
+                myAlert.setIcon(android.R.drawable.ic_dialog_alert);
+                myAlert.setNegativeButton("Zrušiť", new DialogInterface.OnClickListener() {
+                    @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        dialog.dismiss();
+                        finish(); //návrat do predchadzajucej aktivity - OffersWindow
                     }
                 });
-                alertDialog.show();
+                myAlert.show();
             }
 
         });

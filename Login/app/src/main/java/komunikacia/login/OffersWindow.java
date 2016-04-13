@@ -5,7 +5,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,13 +33,14 @@ public class OffersWindow extends Activity{
     private static String TAG = OffersWindow.class.getSimpleName();
     private ProgressDialog pDialog;
     private String userId;
+    private AlertDialog.Builder myAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers_window);
         getActionBar().setDisplayShowHomeEnabled(false);
-
+        myAlert = new AlertDialog.Builder(this);
 
         userId = getIntent().getStringExtra("userId");
 
@@ -117,6 +120,7 @@ public class OffersWindow extends Activity{
                 else{
                     showAllOffers();
                     hidepDialog();
+
                 }
 
 
@@ -133,9 +137,20 @@ public class OffersWindow extends Activity{
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
                 hidepDialog();
+
+                myAlert.setMessage("Nepodarilo sa nadviazať spojenie so serverom!").create();
+                myAlert.setTitle("Error");
+                myAlert.setIcon(android.R.drawable.ic_dialog_alert);
+                myAlert.setNegativeButton("Skúsiť znova", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        loadOffers(BackendlessSettings.urlJsonObj);
+                    }
+                });
+                myAlert.show();
+
             }
 
         });
