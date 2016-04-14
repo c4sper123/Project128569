@@ -145,11 +145,12 @@ public class OffersWindow extends ActionBarActivity {
 
                     for(int i=0;i<data.length();i++){
                         JSONObject offerObject = (JSONObject) data.get(i);
+
+
                         offersData.add(new Offer(offerObject.getString("name"), offerObject.getString("locality"), offerObject.getString("details"),
                                 Integer.parseInt(offerObject.getString("price")), Integer.parseInt(offerObject.getString("type")),
                                 offerObject.getString("startDate"), offerObject.getString("endDate"), Integer.parseInt(offerObject.getString("maxPeople")),
                                 offerObject.getString("imageUrl"), offerObject.getString("objectId")));
-
                     }
                 if(!response.getString("nextPage").equals("null")){
                     loadOffers(response.getString("nextPage"));

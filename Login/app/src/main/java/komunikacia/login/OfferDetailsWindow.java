@@ -128,7 +128,8 @@ public class OfferDetailsWindow extends Activity {
                                     "\n\nTyp: " + type +
                                     "\n\nMaximálny počet ľudí: " + response.getString("maxPeople")+
                                     "\n\nKategória: " + categories.getString("mainCategory")+
-                                    "\n\nPodkategória: " + categories.getString("category")
+                                    "\n\nPodkategória: " + categories.getString("category") +
+                                    "\n\n"
                     );
 
                     ImageView imageView = (ImageView) findViewById(R.id.imageView);
